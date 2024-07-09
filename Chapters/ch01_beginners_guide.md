@@ -4,9 +4,9 @@
 
 If you are just starting with LibreOffice scripting, it is very likely that you heard that scripts can be written in Basic using the built-in Basic IDE, which is a very convenient way to create macros. There's plenty of documentation about it, such as:
 
-- LibreOffice Basic chapter in the LibreOffice Developer's Guide (https://wiki.documentfoundation.org/Documentation/DevGuide/LibreOffice_Basic)
-- Andrew Pitonyak's book on LibreOffice/OpenOffice macros (https://www.pitonyak.org/oo.php)
-- LibreOffice Basic help pages (https://help.libreoffice.org/latest/en-US/text/sbasic/shared/main0601.html)
+- [LibreOffice Basic chapter](https://wiki.documentfoundation.org/Documentation/DevGuide/LibreOffice_Basic) in the LibreOffice Developer's Guide
+- [Andrew Pitonyak's book](https://www.pitonyak.org/oo.php) on LibreOffice/OpenOffice macros
+- [LibreOffice Basic help pages](https://help.libreoffice.org/latest/en-US/text/sbasic/shared/main0601.html)
 
 And you might have also heard that it is possible to create Python macros as well, which is cool since Python is one of the most popular languages nowadays. However, since there is no built-in Python IDE in LibreOffice, the barrier of entry is a bit taller and learning the absolute basics of Python programming in LibreOffice may scare off new users.
 
@@ -27,7 +27,7 @@ This guide is meant for those who:
 
 Now we will create a simple macro that writes "Hello World" to cell `A1` in the currently active Calc sheet. A good way to get started is to imagine how this would be achieved in a Basic macro. Below is a simple implementation that can be easily created and run from the Basic IDE.
 
-```
+```basic
 Sub SayHello
     Dim oSheet As Object
     Dim oCell As Object
@@ -51,7 +51,7 @@ def say_hello(args=None):
 
 The main difference in this Python script is the call to `XSCRIPTCONTEXT.getDocument()`, which is equivalent to calling `ThisComponent` in Basic. In Python scripts, `XSCRIPTCONTEXT` is a runtime object that gives access to various scripting features.
 
-The help page *Programming with Python Scripts* (https://help.libreoffice.org/latest/en-US/text/sbasic/python/python_programming.html) provides various equivalences between Basic and Python scripts and is a must-read for those wishing to convert their Basic scripts to Python.
+The help page [Programming with Python Scripts](https://help.libreoffice.org/latest/en-US/text/sbasic/python/python_programming.html) provides various equivalences between Basic and Python scripts and is a must-read for those wishing to convert their Basic scripts to Python.
 
 ### Where are Python Scripts Stored?
 
@@ -93,7 +93,7 @@ Before wrapping up this tutorial, I will show a few more simple examples that wi
 
 Uno commands can be called from scripts (both in Basic and Python) and are very helpful to automate simple tasks. For instance, let's create a simple Calc script that copies cell "A1" and pastes it into cell "C1". In Basic the script would look like this:
 
-```
+```basic
 Sub MoveToCell(oDispatcher As Object, oFrame As Object, sDestCell As String)
     Dim args(0) As New com.sun.star.beans.PropertyValue
     args(0).Name = "ToPoint"
@@ -154,7 +154,7 @@ The two main differences here are:
 - The import of the `uno` library to provide access to the `getComponentContext` method, which is used to get the service manager, which in turn allows to create Uno services.
 - The creation of `PropertyValue` instances, which are used whenever a Uno command needs arguments. Note how much easier it is to create `PropertyValue` instances in Python.
 
-For a list of all Uno commands, read the Dispatch Commands wiki page (https://wiki.documentfoundation.org/Development/DispatchCommands).
+For a list of all Uno commands, read the [Dispatch Commands](https://wiki.documentfoundation.org/Development/DispatchCommands) wiki page.
 
 ## The ScriptForge Library
 
@@ -198,7 +198,7 @@ Here we use the UI service from ScriptForge to create the Writer document. Then 
 
 ### Learning More
 
-You can learn more about ScriptForge and its services in the following help page (https://help.libreoffice.org/latest/en-US/text/sbasic/shared/03/lib_ScriptForge.html).
+You can learn more about ScriptForge and its services in the following [help page](https://help.libreoffice.org/latest/en-US/text/sbasic/shared/03/lib_ScriptForge.html).
 
 ### Source Code
 
