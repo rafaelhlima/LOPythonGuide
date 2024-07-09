@@ -10,9 +10,9 @@ If you are just starting with LibreOffice scripting, it is very likely that you 
 
 And you might have also heard that it is possible to create Python macros as well, which is cool since Python is one of the most popular languages nowadays. However, since there is no built-in Python IDE in LibreOffice, the barrier of entry is a bit taller and learning the absolute basics of Python programming in LibreOffice may scare off new users.
 
-A common question I get from many users is: *How do I create Python scripts in LibreOffice?* The problem with answering this question is that there's not a single answer to it. The answer depends on the type of script you want to create: is it a user a shared or a document script? And it also depends on how you set up your development environment.
+A common question I get from many users is: *How do I create Python scripts in LibreOffice?* The problem with answering this question is that there's not a single answer to it. The answer depends on the type of script you want to create: is it a user, a shared or a document script? And it also depends on how you set up your development environment.
 
-So instead of delving into all this complexity, in this guide I would like to provide the basics for those wanting to create their first Python script in LibreOffice. This way, you will have a place to start and build on your Python scripting skills.
+So instead of delving into all this complexity, in this guide I will teach the basics for those wanting to create their first Python script in LibreOffice. This way, you will have a place to start and build on your Python scripting skills.
 
 ### Who is This Guide For?
 
@@ -37,7 +37,7 @@ Sub SayHello
 End Sub
 ```
 
-But why does it help to imagine how the script would be written in Basic if our aim is to create Python scripts. The answer to this question is that the way LibreOffice's Uno API is called is very similar in Basic and Python. So once you figure the minor differences between them, you will be able to convert Basic macros into Python macros.
+But why does it help to imagine how the script would be written in Basic if our aim is to create Python scripts? The answer to this question lies on the fact that the way LibreOffice's Uno API is called in Basic and Python is very similar. So once you figure out the minor differences between them, you will be able to convert Basic macros into Python macros.
 
 Without further due, next is the Python script for our Hello World example:
 
@@ -62,13 +62,13 @@ The first step now is to figure out the folder where such scripts are stored, wh
 On **Windows** user scripts are stored in:
 
 ```
-%APPDATA%\LibreOffice\4\user\Scripts\python.
+%APPDATA%\LibreOffice\4\user\Scripts\python
 ```
 
 On **Linux** and **macOS** user scripts are stored in:
 
 ```
-$HOME/.config/libreoffice/4/user/Scripts/python.
+$HOME/.config/libreoffice/4/user/Scripts/python
 ```
 
 If you have never created Python scripts, the folder `Scripts/python` will not exist. So the first step is to create this folder. On **Windows** open the **File Explorer** and type `%APPDATA%` in the address bar. Now navigate to the `\LibreOffice\4\user\` folder. Inside this folder create the `Scripts` folder. Now enter the `Scripts` folder and create the `python` folder. This is where our user Python scripts will be stored. Note that folder names are case-sensitive.
@@ -79,7 +79,7 @@ Now we can finally create our Python script files. Inside the folder we've just 
 
 Here I am using Notepad to edit the script, but you can use any IDE of your preference.
 
-Now you can finally run our macro. Open LibreOffice Calc and go to *Tools - Macros - Run Macro*. Choose the module `myscripts` under `My Macros` and then select the script `say_hello`. Click *Run* and see the "Hello World" message written to cell "A1".
+Now you can finally run our macro. Open LibreOffice Calc and go to *Tools - Macros - Run Macro*. Choose the module `myscripts` under `My Macros` and then select the script `say_hello`. Click *Run* and see the "Hello World" message written to cell `A1`.
 
 ![](../Media/ch01_Figure2.png)
 
@@ -91,7 +91,7 @@ Before wrapping up this tutorial, I will show a few more simple examples that wi
 
 ### Scripts with Uno Commands
 
-Uno commands can be called from scripts (both in Basic and Python) and are very helpful to automate simple tasks. For instance, let's create a simple Calc script that copies cell "A1" and pastes it into cell "C1". In Basic the script would look like this:
+Uno commands can be called from scripts (both in Basic and Python) and are very helpful to automate simple tasks. For instance, let's create a simple Calc script that copies cell `A1` and pastes it into cell `C1`. In Basic the script would look like this:
 
 ```basic
 Sub MoveToCell(oDispatcher As Object, oFrame As Object, sDestCell As String)
@@ -147,11 +147,11 @@ def copy_paste_example(args=None):
 
 This script can be copied to the `myscripts.py` file we created in the previous example. Now run the `copy_paste_example` macro to see the results.
 
-The interesting aspect of this example is how similar the Basic and Python versions of the scripts are. If you know how to do something in Basic, you will soon be able to convert it into a Python script.
+The interesting aspect of this example is how similar the Basic and Python versions of the script are. If you know how to do something in Basic, you will soon be able to convert it into a Python script.
 
 The two main differences here are:
 
-- The import of the `uno` library to provide access to the `getComponentContext` method, which is used to get the service manager, which in turn allows to create Uno services.
+- The import of the `uno` library to provide access to the `getComponentContext` method, which is used to get the service manager and create Uno services.
 - The creation of `PropertyValue` instances, which are used whenever a Uno command needs arguments. Note how much easier it is to create `PropertyValue` instances in Python.
 
 For a list of all Uno commands, read the [Dispatch Commands](https://wiki.documentfoundation.org/Development/DispatchCommands) wiki page.
@@ -178,7 +178,7 @@ def msg_get_date(args=None):
 
 ![](../Media/ch01_Figure3.png)
 
-In this example we import the `CreateScriptService` from the `scriptforge` library, which can be used to instantiate ScriptForge services (in this case, the Basic service).
+In this example we import the `CreateScriptService` from the `scriptforge` library, which can be used to instantiate ScriptForge services (in this case, the `Basic` service).
 
 ### Creating Documents
 
@@ -194,7 +194,7 @@ def create_writer_file(args=None):
 
 ![](../Media/ch01_Figure4.png)
 
-Here we use the UI service from ScriptForge to create the Writer document. Then we access its component to insert some text into the document.
+Here we use the `UI` service from ScriptForge to create the Writer document. Then we access its component to insert some text into the document.
 
 ### Learning More
 
